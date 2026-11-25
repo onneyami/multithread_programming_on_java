@@ -1,0 +1,32 @@
+name: Java SE 21 CI
+
+on:
+  push:
+    branches: [ main, "feat/**" ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Compile Java sources
+        run: |
+          mkdir -p out
+          javac -d out $(find src -name "*.java")
+
+      - name: Run Part 1 (Airport Simulation & Virtual Threads)
+        run: java -cp out part1_airport.AirportLabRunner
+
+      - name: Run Part 2 (Insurance Derivative Readers-Writers)
+        run: java -cp out part2_insurance.InsuranceLabRunner
