@@ -1,0 +1,15 @@
+# Compiled Java class files
+out/
+bin/
+target/
+*.class
+
+# IDE & OS files
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# Temporary lab files
+*.tmp*
+*.csv
